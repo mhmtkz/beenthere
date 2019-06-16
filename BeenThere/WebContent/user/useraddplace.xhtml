@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+<title>Add New Place</title>
+<h5>User Name: <h:outputText value="#{loginBean.username}" rendered="#{loginBean.loggedIn}"/></h5>
+
+</h:head> 
+<body> 
+
+<h:form prependId="false">
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+ <center>
+
+<h4>Place Name</h4>
+<p:inputText value="#{userAddPlaceBean.place.placeName}" id="name"/>
+<tr>
+<td>Longitude</td>
+<td>  <p:inputText id="lng" value="#{userAddPlaceBean.place.lng}"></p:inputText></td>
+</tr>
+<tr>
+<td>Latitude</td>
+	<td>  <p:inputText id="lat" value="#{userAddPlaceBean.place.lat}"></p:inputText></td>
+	</tr>
+	<tr>
+ <br></br>
+ <br />
+ <h:commandButton action="#{userAddPlaceBean.addPlace()}" value="Add Place"></h:commandButton>
+<br />
+</tr>
+<p:gmap id="gmap" center="41, 29" zoom="8" type="ROADMAP" style="width:100%;height:400px">
+ <p:ajax event="pointSelect" listener="#{userAddPlaceBean.onPointSelect}" execute="#{userAddPlaceBean.lat()}" update ="lat" />
+ <p:ajax event="pointSelect" listener="#{userAddPlaceBean.onPointSelect}" execute="#{userAddPlaceBean.lng()}" update ="lng" />
+ 
+
+    </p:gmap>
+ 
+    </center>
+</h:form>
+<br />
+<h:form>
+ 
+  <center><a href="#{request.contextPath}/user/userplacelist.xhtml">Show Places</a></center> 
+ 
+</h:form>
+</body> 
+</html>

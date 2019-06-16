@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<br/><br/><br/>
+<h:form>
+
+<center>
+			<h:panelGrid columns="3" align="center">
+
+				<h:outputLabel value="Username" />
+				<h:inputText id="usr" value="#{loginBean.username}" 
+				required="true"
+				requiredMessage="username!" />
+				<h:message for="usr" />
+
+				<h:outputLabel value="Password" />
+				<h:inputSecret id="pss" value="#{loginBean.password}" required="true" requiredMessage="password!" />
+				<h:message for="pss" />
+
+				<h:outputText value=" " />
+				<h:commandButton action="#{loginBean.login()}" value="Login" />
+				<h:outputText value=" " />
+
+				<h:outputText value=" " />
+				<h:messages globalOnly="true" />
+				<h:outputText value=" " />
+			</h:panelGrid>
+</center>
+
+<br />
+ <center>If you are not registered. Please <a href="#{request.contextPath}/register.xhtml">Register</a></center>
+		
+	<center>or</center>
+	<center>See <a href="#{request.contextPath}/placelist.xhtml">The list of places</a></center>
+		
+		</h:form>
+
+</body> 
+</html>

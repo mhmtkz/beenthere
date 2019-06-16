@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<title>All Places</title>
+ <h5>User Name: <h:outputText value="#{loginBean.username}" rendered="#{loginBean.loggedIn}"/></h5>
+</h:head> 
+<body> 
+<h:form>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+
+<h2 align="center">All Places</h2>
+<table class="tg" align="center">
+  
+  <tr>
+    <th class="tg-0pky">Place Name</th>
+    <th class="tg-0lax">Coordinates (Longitude, Latitude)</th>
+    <th class="tg-0lax">Add Comment</th>
+    <th class="tg-0lax">Delete</th>
+  </tr>
+  
+<ui:repeat var="place" value="#{placeListBean.places}">
+
+	  <tr>
+	    <td class="tg-0lax">#{place.placeName}</td>
+	  <td class="tg-0lax">(#{place.lng}, #{place.lat})</td>
+	 
+	   <td class="tg-0lax"><h:commandButton action="#{commentBean.addComment()}" value="Add Comment" /> </td>
+
+	  <td class="tg-0lax"><h:commandButton action="#{placeListBean.delete(place.id)}" value="Delete Place" /> </td>
+	
+	 
+	  </tr>
+	  <tr>
+  </tr>
+  </ui:repeat>
+  
+  
+</table>
+
+<br/>
+<tr>
+  <td>
+  
+  <center><a href="#{request.contextPath}/user/useraddplace.xhtml">Add New Place</a></center> 
+  </td>
+  
+  </tr>
+</h:form>
+</body> 
+</html>
